@@ -267,9 +267,15 @@ class WikiCorpus(TextCorpus):
         self.processes = processes
         self.lemmatize = lemmatize
         if dictionary is None:
-            self.dictionary = Dictionary(self.get_texts())
+            L = list(self.get_texts())
+            for i in L: print i[1][1]
+            titles = [i[1][1] for i in L]
+            L = [i[0] for i in L]
+            self.dictionary = Dictionary(L)
+            self.titles = titles
         else:
             self.dictionary = dictionary
+        
 
     def get_texts(self):
         """
