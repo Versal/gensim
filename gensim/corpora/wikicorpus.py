@@ -261,18 +261,21 @@ class WikiCorpus(TextCorpus):
         """
         self.fname = fname
         self.filter_namespaces = filter_namespaces
-        self.metadata = False
+        self.metadata = False 
         if processes is None:
             processes = max(1, multiprocessing.cpu_count() - 1)
         self.processes = processes
         self.lemmatize = lemmatize
         if dictionary is None:
-            L = list(self.get_texts())
-            for i in L: print i[1][1]
-            titles = [i[1][1] for i in L]
-            L = [i[0] for i in L]
+            L = self.get_texts()
+            #L = []
+            #for i in range(100):
+             #   L += [g.next()]
+            #for i in L: print i[1][1]
+            #print L
+ #           titles = [i[1][1] for i in L]
+ #           L = [i[0] for i in L]
             self.dictionary = Dictionary(L)
-            self.titles = titles
         else:
             self.dictionary = dictionary
         
